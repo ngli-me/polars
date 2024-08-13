@@ -414,6 +414,7 @@ impl Series {
                 let chunks = cast_chunks(&chunks, &DataType::Binary, CastOptions::NonStrict)?;
                 Ok(BinaryChunked::from_chunks(name, chunks).into_series())
             },
+            #[allow(unused_variables)]
             ArrowDataType::Decimal(precision, scale)
             | ArrowDataType::Decimal256(precision, scale) => {
                 #[cfg(not(feature = "dtype-decimal"))]

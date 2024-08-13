@@ -1,5 +1,6 @@
 use std::fmt::Write;
 
+#[cfg(feature = "dtype-struct")]
 use arrow::bitmap::MutableBitmap;
 
 #[cfg(feature = "dtype-categorical")]

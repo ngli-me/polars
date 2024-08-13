@@ -1,4 +1,5 @@
 use super::*;
+#[cfg(feature = "dtype-struct")]
 use crate::utils::align_chunks_binary;
 
 pub trait NumOpsDispatchInner: PolarsDataType + Sized {

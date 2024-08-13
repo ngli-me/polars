@@ -14,6 +14,7 @@ use polars_compute::comparisons::{TotalEqKernel, TotalOrdKernel};
 use crate::prelude::*;
 use crate::series::implementations::null::NullChunked;
 use crate::series::IsSorted;
+#[cfg(feature = "dtype-struct")]
 use crate::utils::align_chunks_binary;
 
 impl<T> ChunkCompare<&ChunkedArray<T>> for ChunkedArray<T>

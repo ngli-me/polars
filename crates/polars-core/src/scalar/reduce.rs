@@ -1,4 +1,6 @@
-use crate::datatypes::{AnyValue, TimeUnit};
+use crate::datatypes::AnyValue;
+#[cfg(feature = "dtype-date")]
+use crate::datatypes::TimeUnit;
 #[cfg(feature = "dtype-date")]
 use crate::prelude::MS_IN_DAY;
 use crate::prelude::{DataType, Scalar};
