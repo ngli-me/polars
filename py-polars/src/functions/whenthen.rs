@@ -1,7 +1,7 @@
 use polars::lazy::dsl;
 use pyo3::prelude::*;
 
-use crate::PyExpr;
+use polars_python::PyExpr;
 
 #[pyfunction]
 pub fn when(condition: PyExpr) -> PyWhen {

@@ -1,9 +1,9 @@
 use polars::lazy::dsl;
 use pyo3::prelude::*;
 
-use crate::error::PyPolarsErr;
-use crate::expr::ToExprs;
-use crate::PyExpr;
+use polars_python::error::PyPolarsErr;
+use polars_python::expr::ToExprs;
+use polars_python::PyExpr;
 
 #[pyfunction]
 pub fn all_horizontal(exprs: Vec<PyExpr>) -> PyResult<PyExpr> {

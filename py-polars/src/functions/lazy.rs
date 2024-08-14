@@ -1,17 +1,16 @@
 use polars::lazy::dsl;
 use polars::prelude::*;
 use polars_plan::prelude::UnionArgs;
+use polars_python::conversion::any_value::py_object_to_any_value;
+use polars_python::conversion::{get_lf, Wrap};
+use polars_python::error::PyPolarsErr;
+use polars_python::expr::ToExprs;
+use polars_python::map::lazy::binary_lambda;
+use polars_python::prelude::{vec_extract_wrapped, ObjectValue};
+use polars_python::{map, PyDataFrame, PyExpr, PyLazyFrame, PySeries};
 use pyo3::exceptions::{PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyBool, PyBytes, PyFloat, PyInt, PyString};
-
-use crate::conversion::any_value::py_object_to_any_value;
-use crate::conversion::{get_lf, Wrap};
-use crate::error::PyPolarsErr;
-use crate::expr::ToExprs;
-use crate::map::lazy::binary_lambda;
-use crate::prelude::{vec_extract_wrapped, ObjectValue};
-use crate::{map, PyDataFrame, PyExpr, PyLazyFrame, PySeries};
 
 macro_rules! set_unwrapped_or_0 {
     ($($var:ident),+ $(,)?) => {

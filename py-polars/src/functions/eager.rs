@@ -2,9 +2,9 @@ use polars::functions;
 use polars_core::prelude::*;
 use pyo3::prelude::*;
 
-use crate::conversion::{get_df, get_series};
-use crate::error::PyPolarsErr;
-use crate::{PyDataFrame, PySeries};
+use polars_python::conversion::{get_df, get_series};
+use polars_python::error::PyPolarsErr;
+use polars_python::{PyDataFrame, PySeries};
 
 #[pyfunction]
 pub fn concat_df(dfs: &Bound<'_, PyAny>, py: Python) -> PyResult<PyDataFrame> {

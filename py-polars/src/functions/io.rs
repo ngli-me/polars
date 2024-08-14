@@ -7,10 +7,10 @@ use polars_core::prelude::{DTYPE_ENUM_KEY, DTYPE_ENUM_VALUE};
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
-use crate::conversion::Wrap;
-use crate::error::PyPolarsErr;
-use crate::file::{get_either_file, EitherRustPythonFile};
-use crate::prelude::ArrowDataType;
+use polars_python::conversion::Wrap;
+use polars_python::error::PyPolarsErr;
+use polars_python::file::{get_either_file, EitherRustPythonFile};
+use polars_python::prelude::ArrowDataType;
 
 #[cfg(feature = "ipc")]
 #[pyfunction]

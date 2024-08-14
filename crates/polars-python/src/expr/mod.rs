@@ -30,7 +30,7 @@ impl From<Expr> for PyExpr {
     }
 }
 
-pub(crate) trait ToExprs {
+pub trait ToExprs {
     fn to_exprs(self) -> Vec<Expr>;
 }
 
@@ -48,7 +48,7 @@ impl ToExprs for Vec<PyExpr> {
     }
 }
 
-pub(crate) trait ToPyExprs {
+pub trait ToPyExprs {
     fn to_pyexprs(self) -> Vec<PyExpr>;
 }
 

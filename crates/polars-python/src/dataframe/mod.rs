@@ -24,7 +24,7 @@ impl From<DataFrame> for PyDataFrame {
 }
 
 impl PyDataFrame {
-    pub(crate) fn new(df: DataFrame) -> Self {
+    pub fn new(df: DataFrame) -> Self {
         PyDataFrame { df }
     }
 }

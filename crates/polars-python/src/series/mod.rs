@@ -41,12 +41,12 @@ impl From<Series> for PySeries {
 }
 
 impl PySeries {
-    pub(crate) fn new(series: Series) -> Self {
+    pub fn new(series: Series) -> Self {
         PySeries { series }
     }
 }
 
-pub(crate) trait ToSeries {
+pub trait ToSeries {
     fn to_series(self) -> Vec<Series>;
 }
 
@@ -57,7 +57,7 @@ impl ToSeries for Vec<PySeries> {
     }
 }
 
-pub(crate) trait ToPySeries {
+pub trait ToPySeries {
     fn to_pyseries(self) -> Vec<PySeries>;
 }
 

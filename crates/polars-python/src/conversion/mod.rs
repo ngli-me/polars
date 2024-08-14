@@ -1,5 +1,5 @@
-pub(crate) mod any_value;
-pub(crate) mod chunked_array;
+pub mod any_value;
+pub mod chunked_array;
 mod datetime;
 use std::fmt::{Display, Formatter};
 use std::hash::{Hash, Hasher};
@@ -65,7 +65,7 @@ pub(crate) fn reinterpret_vec<T: Transparent>(input: Vec<T>) -> Vec<T::Target> {
     unsafe { Vec::from_raw_parts(ptr, len, cap) }
 }
 
-pub(crate) fn vec_extract_wrapped<T>(buf: Vec<Wrap<T>>) -> Vec<T> {
+pub fn vec_extract_wrapped<T>(buf: Vec<Wrap<T>>) -> Vec<T> {
     reinterpret_vec(buf)
 }
 
@@ -87,22 +87,22 @@ impl<T> From<T> for Wrap<T> {
 }
 
 // extract a Rust DataFrame from a python DataFrame, that is DataFrame<PyDataFrame<RustDataFrame>>
-pub(crate) fn get_df(obj: &Bound<'_, PyAny>) -> PyResult<DataFrame> {
+pub fn get_df(obj: &Bound<'_, PyAny>) -> PyResult<DataFrame> {
     let pydf = obj.getattr(intern!(obj.py(), "_df"))?;
     Ok(pydf.extract::<PyDataFrame>()?.df)
 }
 
-pub(crate) fn get_lf(obj: &Bound<'_, PyAny>) -> PyResult<LazyFrame> {
+pub fn get_lf(obj: &Bound<'_, PyAny>) -> PyResult<LazyFrame> {
     let pydf = obj.getattr(intern!(obj.py(), "_ldf"))?;
     Ok(pydf.extract::<PyLazyFrame>()?.ldf)
 }
 
-pub(crate) fn get_series(obj: &Bound<'_, PyAny>) -> PyResult<Series> {
+pub fn get_series(obj: &Bound<'_, PyAny>) -> PyResult<Series> {
     let s = obj.getattr(intern!(obj.py(), "_s"))?;
     Ok(s.extract::<PySeries>()?.series)
 }
 
-pub(crate) fn to_series(py: Python, s: PySeries) -> PyObject {
+pub fn to_series(py: Python, s: PySeries) -> PyObject {
     let series = SERIES.bind(py);
     let constructor = series
         .getattr(intern!(series.py(), "_from_pyseries"))

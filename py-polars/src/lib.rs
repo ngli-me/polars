@@ -9,14 +9,17 @@ mod build {
     include!(concat!(env!("OUT_DIR"), "/built.rs"));
 }
 
+mod functions;
+
+use functions::PyStringCacheHolder;
 use polars_python::allocator::create_allocator_capsule;
 #[cfg(feature = "csv")]
 use polars_python::batched_csv::PyBatchedCsv;
 #[cfg(feature = "polars_cloud")]
 use polars_python::cloud;
 use polars_python::dataframe::PyDataFrame;
+use polars_python::exceptions;
 use polars_python::expr::PyExpr;
-use polars_python::functions::PyStringCacheHolder;
 use polars_python::lazyframe::{PyInProcessQuery, PyLazyFrame};
 use polars_python::lazygroupby::PyLazyGroupBy;
 #[cfg(feature = "object")]
@@ -24,7 +27,6 @@ use polars_python::on_startup;
 use polars_python::series::PySeries;
 #[cfg(feature = "sql")]
 use polars_python::sql::PySQLContext;
-use polars_python::{exceptions, functions};
 use pyo3::prelude::*;
 use pyo3::{wrap_pyfunction, wrap_pymodule};
 

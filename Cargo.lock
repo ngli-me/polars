@@ -3340,7 +3340,6 @@ name = "polars-python"
 version = "0.42.0"
 dependencies = [
  "ahash",
- "arboard",
  "built",
  "bytemuck",
  "ciborium",
@@ -3548,9 +3547,14 @@ dependencies = [
 name = "py-polars"
 version = "1.5.0"
 dependencies = [
+ "arboard",
  "built",
  "jemallocator",
  "mimalloc",
+ "polars",
+ "polars-core",
+ "polars-parquet",
+ "polars-plan",
  "polars-python",
  "pyo3",
 ]

@@ -68,11 +68,7 @@ pub(crate) fn call_lambda_with_series(
 }
 
 /// A python lambda taking two Series
-pub(crate) fn binary_lambda(
-    lambda: &PyObject,
-    a: Series,
-    b: Series,
-) -> PolarsResult<Option<Series>> {
+pub fn binary_lambda(lambda: &PyObject, a: Series, b: Series) -> PolarsResult<Option<Series>> {
     Python::with_gil(|py| {
         // get the pypolars module
         let pypolars = PyModule::import_bound(py, "polars").unwrap();

@@ -4,7 +4,7 @@ use polars_core::POOL;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 
-use crate::conversion::Wrap;
+use polars_python::conversion::Wrap;
 
 #[pyfunction]
 pub fn get_index_type(py: Python) -> PyObject {

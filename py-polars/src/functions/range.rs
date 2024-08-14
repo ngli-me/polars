@@ -2,9 +2,9 @@ use polars::lazy::dsl;
 use polars_core::with_match_physical_integer_polars_type;
 use pyo3::prelude::*;
 
-use crate::error::PyPolarsErr;
-use crate::prelude::*;
-use crate::{PyExpr, PySeries};
+use polars_python::error::PyPolarsErr;
+use polars_python::prelude::*;
+use polars_python::{PyExpr, PySeries};
 
 #[pyfunction]
 pub fn int_range(start: PyExpr, end: PyExpr, step: i64, dtype: Wrap<DataType>) -> PyExpr {

@@ -133,7 +133,7 @@ pub(crate) static LUT: crate::gil_once_cell::GILOnceCell<PlHashMap<TypeObjectPtr
     crate::gil_once_cell::GILOnceCell::new();
 
 /// Convert a Python object to an [`AnyValue`].
-pub(crate) fn py_object_to_any_value<'py>(
+pub fn py_object_to_any_value<'py>(
     ob: &Bound<'py, PyAny>,
     strict: bool,
 ) -> PyResult<AnyValue<'py>> {
