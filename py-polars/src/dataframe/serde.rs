@@ -2,14 +2,13 @@ use std::io::{BufReader, BufWriter, Cursor};
 use std::ops::Deref;
 
 use polars_io::mmap::ReaderBytes;
+use polars_python::error::PyPolarsErr;
+use polars_python::exceptions::ComputeError;
+use polars_python::file::{get_file_like, get_mmap_bytes_reader};
+use polars_python::prelude::*;
+use polars_python::PyDataFrame;
 use pyo3::prelude::*;
 use pyo3::types::PyBytes;
-
-use super::PyDataFrame;
-use crate::error::PyPolarsErr;
-use crate::exceptions::ComputeError;
-use crate::file::{get_file_like, get_mmap_bytes_reader};
-use crate::prelude::*;
 
 #[pymethods]
 impl PyDataFrame {
@@ -74,7 +73,7 @@ impl PyDataFrame {
     #[staticmethod]
     #[cfg(feature = "json")]
     pub fn deserialize_json(py: Python, mut py_f: Bound<PyAny>) -> PyResult<Self> {
-        use crate::file::read_if_bytesio;
+        use polars_python::file::read_if_bytesio;
         py_f = read_if_bytesio(py_f);
         let mut mmap_bytes_r = get_mmap_bytes_reader(&py_f)?;
 

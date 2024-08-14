@@ -9,6 +9,7 @@ mod build {
     include!(concat!(env!("OUT_DIR"), "/built.rs"));
 }
 
+mod dataframe;
 mod functions;
 
 use functions::PyStringCacheHolder;

@@ -1,10 +1,11 @@
+use polars::error::polars_err;
 use polars::frame::row::{rows_to_schema_supertypes, rows_to_supertypes, Row};
+use polars_python::conversion::any_value::py_object_to_any_value;
+use polars_python::conversion::{vec_extract_wrapped, Wrap};
+use polars_python::interop;
 use pyo3::prelude::*;
 
 use super::*;
-use crate::conversion::any_value::py_object_to_any_value;
-use crate::conversion::{vec_extract_wrapped, Wrap};
-use crate::interop;
 
 #[pymethods]
 impl PyDataFrame {

@@ -7,18 +7,17 @@ use polars::io::mmap::ensure_not_mapped;
 use polars::io::RowIndex;
 #[cfg(feature = "parquet")]
 use polars_parquet::arrow::write::StatisticsOptions;
-use pyo3::prelude::*;
-use pyo3::pybacked::PyBackedStr;
-
-use super::*;
 #[cfg(feature = "parquet")]
-use crate::conversion::parse_parquet_compression;
-use crate::conversion::Wrap;
-use crate::file::{
+use polars_python::conversion::parse_parquet_compression;
+use polars_python::conversion::Wrap;
+use polars_python::file::{
     get_either_file, get_file_like, get_mmap_bytes_reader, get_mmap_bytes_reader_and_path,
     read_if_bytesio, EitherRustPythonFile,
 };
-use crate::prelude::PyCompatLevel;
+use polars_python::prelude::PyCompatLevel;
+use polars_python::PyDataFrame;
+use pyo3::prelude::*;
+use pyo3::pybacked::PyBackedStr;
 
 #[pymethods]
 impl PyDataFrame {
@@ -195,7 +194,7 @@ impl PyDataFrame {
         schema_overrides: Option<Wrap<Schema>>,
     ) -> PyResult<Self> {
         assert!(infer_schema_length != Some(0));
-        use crate::file::read_if_bytesio;
+        use polars_python::file::read_if_bytesio;
         py_f = read_if_bytesio(py_f);
         let mmap_bytes_r = get_mmap_bytes_reader(&py_f)?;
 

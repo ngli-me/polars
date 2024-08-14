@@ -38,7 +38,7 @@ pub(crate) fn to_py_array(
 }
 
 /// RecordBatch to Python.
-pub(crate) fn to_py_rb(
+pub fn to_py_rb(
     rb: &RecordBatch,
     names: &[&str],
     py: Python,
@@ -60,7 +60,7 @@ pub(crate) fn to_py_rb(
 
 /// Export a series to a C stream via a PyCapsule according to the Arrow PyCapsule Interface
 /// https://arrow.apache.org/docs/dev/format/CDataInterface/PyCapsuleInterface.html
-pub(crate) fn series_to_stream<'py>(
+pub fn series_to_stream<'py>(
     series: &'py Series,
     py: Python<'py>,
 ) -> PyResult<Bound<'py, PyCapsule>> {
@@ -71,7 +71,7 @@ pub(crate) fn series_to_stream<'py>(
     PyCapsule::new_bound(py, stream, Some(stream_capsule_name))
 }
 
-pub(crate) fn dataframe_to_stream<'py>(
+pub fn dataframe_to_stream<'py>(
     df: &'py DataFrame,
     py: Python<'py>,
 ) -> PyResult<Bound<'py, PyCapsule>> {

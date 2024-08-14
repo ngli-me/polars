@@ -6,20 +6,20 @@ use polars::prelude::*;
 use polars_core::frame::*;
 #[cfg(feature = "pivot")]
 use polars_lazy::frame::pivot::{pivot, pivot_stable};
+use polars_python::conversion::Wrap;
+use polars_python::map::dataframe::{
+    apply_lambda_unknown, apply_lambda_with_bool_out_type, apply_lambda_with_primitive_out_type,
+    apply_lambda_with_string_out_type,
+};
+use polars_python::prelude::strings_to_smartstrings;
+use polars_python::series::{PySeries, ToPySeries, ToSeries};
+use polars_python::{PyExpr, PyLazyFrame};
 use pyo3::exceptions::PyIndexError;
 use pyo3::prelude::*;
 use pyo3::pybacked::PyBackedStr;
 use pyo3::types::PyList;
 
 use super::*;
-use crate::conversion::Wrap;
-use crate::map::dataframe::{
-    apply_lambda_unknown, apply_lambda_with_bool_out_type, apply_lambda_with_primitive_out_type,
-    apply_lambda_with_string_out_type,
-};
-use crate::prelude::strings_to_smartstrings;
-use crate::series::{PySeries, ToPySeries, ToSeries};
-use crate::{PyExpr, PyLazyFrame};
 
 #[pymethods]
 impl PyDataFrame {
